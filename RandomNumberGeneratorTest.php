@@ -59,4 +59,22 @@ class RandomNumberGeneratorTest extends PHPUnit_Framework_TestCase
     }
 
 
+    public function testDisordered()
+    {
+        $generateRandomNumbers = new RandomNumberGenerator();
+        $resultBetween3and10 = $generateRandomNumbers->disordered()->between(3, 10);
+        $this->assertTrue(is_array($resultBetween3and10));
+        for ($i = 3; $i <= 10; ++$i) {
+            $this->assertContains($i, $resultBetween3and10);
+        }
+        $ordered = true;
+        for ($i = 1; $i < count($resultBetween3and10) and $ordered == true; ++$i) {
+            if ($resultBetween3and10[$i] != $resultBetween3and10[$i - 1] + 1) {
+                $ordered = false;
+            }
+        }
+        $this->assertFalse($ordered);
+        $this->assertEquals(8, count($resultBetween3and10));
+    }
+
 }
