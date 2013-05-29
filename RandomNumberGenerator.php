@@ -13,6 +13,7 @@ class RandomNumberGenerator
 
     public function between($lower, $higher)
     {
+
         return array(1);
 
     }
