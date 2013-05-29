@@ -13,18 +13,13 @@ class RandomNumberGenerator
 
     public function between($lower, $higher)
     {
-        if ($lower==1 and $higher==1){
-            return array(1);
+        $randomValues = array();
+
+        for($i=$lower;$i<=$higher;++$i){
+            $randomValues[]=$i;
         }
-        if ($lower==4 and $higher==4){
-            return array(4);
-        }
-        if ($lower==3 and $higher==10){
-            return array(3,4,5,6,7,8,9,10);
-        }
-        if ($lower==7 and $higher==2){
-            return array();
-        }
+
+        return $randomValues;
 
     }
 
