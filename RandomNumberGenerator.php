@@ -14,18 +14,11 @@ class RandomNumberGenerator
 
     public function between($lower, $higher)
     {
-        $randomValues = array();
-
-        if ($this->disorder) {
-            $randomValues[] = $higher;
-            for ($i = $lower; $i < $higher; ++$i) {
-                $randomValues[] = $i;
-            }
-        } else {
-            for ($i = $lower; $i <= $higher; ++$i) {
-                $randomValues[] = $i;
-            }
+        if($higher<$lower){
+            return array();
         }
+        $randomValues = range($lower, $higher);
+        shuffle($randomValues);
 
         return $randomValues;
 
