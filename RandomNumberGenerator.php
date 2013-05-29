@@ -10,17 +10,33 @@
 class RandomNumberGenerator
 {
 
+    protected $disorder = false;
 
     public function between($lower, $higher)
     {
         $randomValues = array();
 
-        for($i=$lower;$i<=$higher;++$i){
-            $randomValues[]=$i;
+        if ($this->disorder) {
+            $randomValues[] = $higher;
+            for ($i = $lower; $i < $higher; ++$i) {
+                $randomValues[] = $i;
+            }
+        } else {
+            for ($i = $lower; $i <= $higher; ++$i) {
+                $randomValues[] = $i;
+            }
         }
 
         return $randomValues;
 
+    }
+
+
+    public function disordered()
+    {
+        $this->disorder = true;
+
+        return $this;
     }
 
 }
